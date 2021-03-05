@@ -4,6 +4,7 @@ When we open the provided link, we get an error message...
 ![](./img/1.jpg)  
 
 This speaks of a User-Agent which is part of an HTTP Header. When we take a look at the source code, we can clearly see a comment that we can potentially use for the User-Agent.  
+![](./img/2.jpg)
 We could use the curl command to spoof our User-Agent but I feel like creating an exploit script for this box to sharpen my programming skills. I am going to use [Python](https://www.python.org/) and the built-in requests module.  
 
 First of all, lets create a basic script to do a GET request on the website.  
@@ -38,7 +39,7 @@ print(s.text)
 ```  
 
 When we run this script, we get another error...  
-![](./img/2.jpg)  
+![](./img/3.jpg)  
 I got super confused and tried to manipulate the User-Agent but it seemed that it works. So what was the issue? When you read the error message carefully, it says that we did not come from `awesomesauce.com`. There is an entry called 'Referer' on an HTTP Header that denotes where the request came from, so we can set this Referer entry to be `awesomesauce.com`.  
 This is what the final script should look like  
 
