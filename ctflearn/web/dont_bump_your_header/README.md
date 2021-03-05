@@ -4,7 +4,7 @@ When we open the provided link, we get an error message...
 ![](./img/1.jpg)  
 
 This speaks of a User-Agent which is part of an HTTP Header. When we take a look at the source code, we can clearly see a comment that we can potentially use for the User-Agent.  
-We could use the curl command to spoof our User-Agent but I feel like creating an exploit script for this box to sharpen my programming skills. I am going to use [Python](python.org) and the built-in requests module.  
+We could use the curl command to spoof our User-Agent but I feel like creating an exploit script for this box to sharpen my programming skills. I am going to use [Python](https://www.python.org/) and the built-in requests module.  
 
 First of all, lets create a basic script to do a GET request on the website.  
 ```python
