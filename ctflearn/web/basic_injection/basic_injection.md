@@ -1,4 +1,4 @@
-# Writeup for [Basic Injection](https://ctflearn.com/challenge/88) Box on [CTFLEARN](https://ctflearn.com)
+# Writeup for [Basic Injection](https://ctflearn.com/challenge/88) Box
 
 We are prompted with a page that lets us submit some input...  
 
