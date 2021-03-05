@@ -40,7 +40,7 @@ print(s.text)
 
 When we run this script, we get another error...  
 ![](./img/3.jpg)  
-I got super confused and tried to manipulate the User-Agent but it seemed that it works. So what was the issue? When you read the error message carefully, it says that we did not come from `awesomesauce.com`. There is an entry called 'Referer' on an HTTP Header that denotes where the request came from, so we can set this Referer entry to be `awesomesauce.com`.  
+I got super confused and thought that there was an error in my request but it seemed that it was working. So what was the issue? When you read the error message carefully, it says that we did not come from `awesomesauce.com`. So that was the issue right there. There is an entry called 'Referer' on an HTTP Header that denotes where the request came from, so we can set this Referer entry to be `awesomesauce.com`and that should resolve our issue.  
 This is what the final script should look like  
 
 ```python
