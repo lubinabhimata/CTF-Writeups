@@ -26,7 +26,7 @@ This sql statement will return `TRUE` because 1=1 is true, and the
 ```
 -- -
 ```
-denotes to comment out the rest of the statement. When we input this statement to the website, it has succesfully dumped the whole database.
+denotes to comment out the rest of the statement. When we input this statement to the website, it will dump the whole database.
 
 ![Success](./img/success.jpg)  
 We can see our flag right there on the output of the dumped database.
