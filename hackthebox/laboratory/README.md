@@ -12,13 +12,11 @@
 
 ## Machine Information
 
-<img src="./img/machine-banner.png" style="float: right;" width="450" height="300">
-
 * OS : Linux
 * Difficulty : Easy
 * Points : 20
 * IP Address : 10.10.10.216
-
+* Released : 14 November 2020
 
 ## Information Gathering and Enumeration
 
