@@ -5,9 +5,15 @@ We are prompted to a page that says that we aren't logged in.
 ![](./img/page.png)
 
 
-The first thing I check for checking logins are `cookies`.
+To solve this problem, we're going to need to know how logins work. 
+
+When a user is logged in, it creates a session with the server to denote that the user is logged in and so that the server knows which request is coming from which user. It can also be used to customize user sessions. 
+
+All request origins to a server are exactly the same and a server cannot determine if a request came from a client that had already made a request before, or it’s a new one. This cookie can be used to identify what privileges the user has, including login sessions.
+
 
 On the previous level, we used a tool called Burp Suite. But now we're going to do it with `Python` with the `requests` module.
+So let's create the base script for this exploit that'll just do a simple `GET` request to the server.
 
 ```python
 #!/usr/bin/env python3
