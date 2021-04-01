@@ -12,7 +12,7 @@ As usual, we are going to start things off with a simple nmap scan.
 ```
 nmap -sC -sV -oN nmap/initial -v 10.10.2.255
 ```
->Legend:
+>Arguments:
 >1. -sC -> Use default scripts
 >2. -sV -> Enumerate Versions
 >3. -oN -> Output normal format.
@@ -31,7 +31,7 @@ After that we should run a directory fuzzing tool. I'm going to run a tool calle
 ```
 gobuster dir -u http://10.10.2.255/ -w /opt/SecLists/Discovery/Web-Content/raft-small-words.txt -o gobuster/raft-small_root -x php,html,txt
 ```	
->Legend:
+>Arguments:
 >1. dir -> Directory fuzzing mode
 >2. -u -> URL
 >3. -w -> Wordlist to use
@@ -73,7 +73,7 @@ We also need to setup a listener on our attacker machine **first** before execut
 ```
 ncat -lnvp 9001
 ```
->Legend:
+>Arguments:
 >1. -l -> Listen
 >2. -n -> Don't resolve hostnames via DNS
 >3. -v -> Verbose mode
