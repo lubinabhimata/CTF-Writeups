@@ -2,7 +2,7 @@
 
 We are given an upload form to upload JPEG files.
 
-Uploading a JPEG will definitely work, but what happens if we try to upload a `.php` file?
+The expected file for the upload is a JPEG file, but what would happen if we try to upload a `.php` file?
 
 Let's try to upload a simple php file that will just echo some text to the screen.
 
@@ -22,7 +22,7 @@ Looking at the source code we see there are 2 major code blocks that come in to 
 
 ![source](./img/source.png)
 
-The first being the `makeRandomPathFromFilename` which creates a random filename with an extension that is provided with the filename. If we looks closely to the bottom, the snippet `value="<? print genRandomString(); ?>.jpg" />` is forcing it so our filename will always end in `.jpg` but we can probably change that if we upload the file directly wihtout going through that piece of code.
+The first being the `makeRandomPathFromFilename` which creates a random filename with an extension that is provided with the filename. If we look closely to the bottom, the snippet `value="<? print genRandomString(); ?>.jpg" />` is forcing it so our filename will always end in `.jpg` but we can probably change that if we upload the file directly without going through that piece of code.
 
 The second being that `if(array_key_exists("filename", $_POST)) { ` that will upload our file if we do a `POST` request on the page.
 
