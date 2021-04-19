@@ -3,8 +3,8 @@
 ## Table of Contents
 - [Machine Information](#machine-information)
 - [Information Gathering and Enumeration](#information-gathering-and-enumeration)
-	- [laboratory.htb](#laboratory.htb-domain)
-	- [git.laboratory.htb](#git.laboratory.htb-domain)
+	- [laboratory.htb](#laboratoryhtb-domain)
+	- [git.laboratory.htb](#gitlaboratoryhtb-domain)
 - [Exploitation](#exploitation)
 - [Privilege Escalation](#privilege-escalation)
 	- [Docker to Low Privileged Shell](#docker-to-low-privileged-shell)
