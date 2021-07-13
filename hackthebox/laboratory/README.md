@@ -216,7 +216,7 @@ Let's also change the password.
 user.password = 'password'
 user.save
 ```
->**NOTE: We could have just changed our user `test` to become admin and access `dexter`'s project using the Admin Area. I didn't know this when solving this box.**
+>**NOTE: We could have just changed our user `test` to become admin and access `dexter`'s project using the Admin Area. I didn't know this when solving this box. ( PLEASE DO THIS INSTEAD OF CHANGING THE PASSWORD SINCE IT CAN MESS THINGS UP FOR OTHER PEOPLE )**
 
 ![rails-console](./img/rails-console.png)
 
